@@ -2,6 +2,9 @@
  * Created by ultimatum on 2014-10-02.
  */
 public class Carte {
+
+    //est-ce vraiment utile comme classe ??
+
     private final int couleur;
     private final int valeur;
 
