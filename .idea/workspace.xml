@@ -330,7 +330,7 @@
       <changelist id="d68c7cd0-22a3-4727-83d5-1d3280b5b0ce" name="Default" comment="" />
       <created>1412009169150</created>
       <updated>1412009169150</updated>
-      <workItem from="1412212261116" duration="1939000" />
+      <workItem from="1412212261116" duration="1946000" />
     </task>
     <task id="LOCAL-00001" summary="test branch">
       <created>1412213839139</created>
@@ -340,11 +340,15 @@
       <created>1412214039532</created>
       <updated>1412214039532</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="test branch">
+      <created>1412214214658</created>
+      <updated>1412214214658</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1939000" />
+    <option name="totallyTimeSpent" value="1946000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
