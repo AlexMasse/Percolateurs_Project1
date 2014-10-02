@@ -23,7 +23,7 @@ public class JeuxPariCarte  {
 
         frame.setTitle("Jeux de paris");
 
-        VueJeuxCarte jPanelCarte = new VueJeuxCarte(200, 200);
+        VueJeuxCarte jPanelCarte = new VueJeuxCarte(400, 200);
 
         frame.add(jPanelCarte);
         frame.pack();
