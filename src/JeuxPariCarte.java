@@ -7,7 +7,10 @@ import javax.swing.*;
 
 public class JeuxPariCarte  {
 
-
+    public static String PIQUE   = "\u2660";
+    public static String COEUR   = "\u2665";
+    public static String TREFLE  = "\u2663";
+    public static String CARREAU = "\u2666";
 
     /*
 
@@ -28,6 +31,8 @@ public class JeuxPariCarte  {
         frame.add(jPanelCarte);
         frame.pack();
         frame.setVisible(true);
+        System.out.println(PIQUE + "\033[31m" + " g " + CARREAU);
+        System.out.println("\033[0m BLACK");
     }
 
     public void creerPanneauJeux() {
