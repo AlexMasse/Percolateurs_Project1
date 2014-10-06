@@ -8,7 +8,7 @@
 public class ControleurJeuDePari {
 
    /* AMELIORATON APPORTEE : Les methodes ne sont plus public et static, mais plutot protected.
-    * Cette classe est instanciee dans la methode main pour l'acces aux methodes
+    * Cette classe est instanciee dans la methode "main" pour l'acces a ses methodes.
     */
 
     /**
