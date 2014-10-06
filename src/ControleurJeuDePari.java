@@ -5,14 +5,17 @@
  * 
  */
  
-public class Tp2 {
+public class ControleurJeuDePari {
 
-    //BLABLA
+   /* AMELIORATON APPORTEE : Les methodes ne sont plus public et static, mais plutot protected.
+    * Cette classe est instanciee dans la methode main pour l'acces aux methodes
+    */
+
     /**
      * Affiche la carte selon sa couleur et sa valeur
      * @param carte doit etre entre 0 et 51 inclusivement
      */
-    public static void afficherCarte (int carte) {
+    protected void afficherCarte (int carte) {
         // D�claration des variables locales
         int valeur = PaquetDeCartes.valeur(carte);
         int couleur = PaquetDeCartes.couleur(carte);
@@ -57,7 +60,7 @@ public class Tp2 {
      * D�termine si les deux cartes ont la m�me valeur (ex.: deux rois, deux 9)
      * @param carte1 et carte2 doivent �tre entre 0 et 51 inclusivement
      */
-    public static boolean memeValeur (int carte1,int carte2) {
+    protected boolean memeValeur (int carte1,int carte2) {
         // D�claration des variables locales
         boolean memeValeur;
         int valeur1 = PaquetDeCartes.valeur(carte1);
@@ -78,7 +81,7 @@ public class Tp2 {
      * @param carte1 et carte2 doivent �tre entre 0 et 51 inclusivement
      * @return true si les deux cartes ont la m�me couleur, false sinon
      */
-    public static boolean memeCouleur (int carte1,int carte2) {
+    protected boolean memeCouleur (int carte1,int carte2) {
         // D�claration des variables locales
         boolean memeCouleur;
         int couleur1 = PaquetDeCartes.couleur(carte1);
@@ -98,7 +101,7 @@ public class Tp2 {
      * @param carte doit �tre entre 0 et 51 inclusivement
      * @return true si la carte est une figure, false sinon
      */
-    public static boolean estUneFigure (int carte) {
+    protected boolean estUneFigure (int carte) {
         // D�claration des variables locales
         boolean estUneFigure;
         int valeur = (carte % 13);
@@ -118,7 +121,7 @@ public class Tp2 {
      * Permet a l'utilisateur d'initialiser le jeu de carte.
      * Un m�me entier germe g�n�rera les m�mes cartes.
      */
-    public static void initialiserLeJeu () {
+    protected void initialiserLeJeu () {
         int germe;
         System.out.println ( "Entrez un nombre entier pour initialiser le jeu : " );
         germe = Clavier.lireInt ();
@@ -131,7 +134,7 @@ public class Tp2 {
      * Le programme le redemande tant que ce n'est pas superieur ou egal a 4.
      * @return un entier dont la valeur correspond au montant (en $).
      */
-    public static int entreeArgent () {
+    protected int entreeArgent () {
         // D�claration de la variable locale
         int argent;
         
@@ -150,7 +153,7 @@ public class Tp2 {
      * Demande � l'utilisateur s'il d�sire jouer une partie.
      * @return true si l'utilisateur veut jouer, false sinon
      */
-    public static boolean jouerPartie () {
+    protected boolean jouerPartie () {
         // D�claration des variables locales
         String invite = "Voulez-vous jouer une partie ? ";
         String reponse;
@@ -178,7 +181,7 @@ public class Tp2 {
      * @param argent doit �tre un entier
      * @return 2 ou 3 cartes
      */
-    public static int nombreDeCartes (int argent) {
+    protected int nombreDeCartes (int argent) {
         // D�claration de la variable locale
         int nombreDeCartes;
         
@@ -204,7 +207,7 @@ public class Tp2 {
      * sur lequel il d�sire miser.
      * @return 1, 2, 3, 4 ou 5, d�pendamment de ce que l'utilisateur a choisi.
      */
-    public static int numeroDePari () {
+    protected int numeroDePari () {
         // D�claration de la variable locale
         int numeroDePari;
         
@@ -215,14 +218,15 @@ public class Tp2 {
         System.out.println (" 3 : somme paire");
         System.out.println (" 4 : meme couleur");
         System.out.println (" 5 : meme valeur");
+        System.out.println (" 6 : toutes des figures");
         
         // D�cision de l'utilisateur
         System.out.println ("Votre choix =>");
         numeroDePari = Clavier.lireInt();
         
         // Boucle de validation
-        while (numeroDePari < 1 || numeroDePari > 5) {
-            System.out.print ("*** vous devez choisir un numero entre 1 et 5 :");
+        while (numeroDePari < 1 || numeroDePari > 6) {
+            System.out.print ("*** vous devez choisir un numero entre 1 et 6 :");
             numeroDePari = Clavier.lireInt();
         }
         return numeroDePari;
@@ -231,12 +235,12 @@ public class Tp2 {
      /**
      * V�rifie si, selon le num�ro de pari et les cartes pig�es,
      * l'utilisateur gagne son pari.
-     * @param choixPari doit etre un numero entre 1 et 5
+     * @param choixPari doit etre un numero entre 1 et 6
      * @param carte1 et carte2 doivent etre entre 0 et 51
      * @param carte3 doit �tre entre �gal � 51 ou moins
      * @return true si l'utilisateur gagne son pari, false sinon
      */
-    public static boolean gagnePari (int choixPari, int carte1, int carte2, int carte3) {
+    protected boolean gagnePari (int choixPari, int carte1, int carte2, int carte3) {
         // D�claration des variables locales
         boolean pariCarte1 = false;
         boolean pariCarte2 = false;
@@ -336,7 +340,15 @@ public class Tp2 {
                     }
                 }
                 break;
+            case 6: // Pari 6
+                gagnePari = estUneFigure(carte1) && estUneFigure(carte2);
+                if (troisCartes) {
+                    gagnePari = gagnePari && estUneFigure(carte3);
+                }
+                break;
+            default: break;
         } // switch (choixPari)
+
         return gagnePari;
     } // gagnePari
     
@@ -346,7 +358,7 @@ public class Tp2 {
      * @param numeroDePari doit �tre entre 1 et 5
      * @return gain le montant gagn� par l'utilisateur
      */
-    public static int argentGagne (int nombreDeCartes, int numeroDePari) {
+    protected int argentGagne (int nombreDeCartes, int numeroDePari) {
         // D�claration de la variable locale
         int gain = 0;
         
@@ -367,75 +379,12 @@ public class Tp2 {
             case 5: // Pari 5
                 gain = (2 * (int)(Math.pow(nombreDeCartes - 1,3))) + 2;
                 break;
+            case 6: // Pari 6
+                gain = 5 * nombreDeCartes;
+                break;
+            default: break;
         } // switch (numeroDePari)
         return gain;
     } // argentGagne
-        
-    
-            
-    public static void main (String[] params) {
-        // D�claration des variables
-        int argent = 0;
-        int nombreDeCartes = 0;
-        boolean jouerPartie;
-        int carte1 = 0;
-        int carte2 = 0;
-        int carte3 = 0;
-        int numeroDePari = 0;
-        boolean gagnePari;
-        String gagne = "Bravo ! Vous avez gagne ";
-        String perdu = "Desole ! Vous avez perdu !";
 
-        initialiserLeJeu(); // Initialisation de l'ordre des cartes
-        
-        // Saisie des variables n�cessaires � l'ex�cution du jeu
-        argent = entreeArgent(); // Entr�e du montant d'argent de l'utilisateur
-        jouerPartie = jouerPartie(); // Est-ce l'utilisateur veut jouer?
-        
-        // Boucle principale
-        while (jouerPartie == true && argent >= 4) {
-            // Saisie des variables n�cessaires pour un pari
-            carte3 = -1; // Puisqu'on ne sait pas le nombre de cartes
-            nombreDeCartes = nombreDeCartes(argent); // Nombre de cartes jou�es
-            argent = argent - (2 * nombreDeCartes); // Achat des cartes � 2$ par carte
-            numeroDePari = numeroDePari(); // Pari en jeu
-            
-            // Affectation et affichage des cartes
-            carte1 = PaquetDeCartes.piger();
-            carte2 = PaquetDeCartes.piger();
-            System.out.println ("Voici les cartes pigees:");
-            afficherCarte(carte1);
-            afficherCarte(carte2);
-            if (nombreDeCartes == 3) {
-                carte3 = PaquetDeCartes.piger();                 
-                afficherCarte(carte3);
-            }
-            
-            // V�rification si l'utilisateur gagne et ajout du gain
-            gagnePari = gagnePari(numeroDePari,carte1,carte2,carte3);
-            if (gagnePari) { // L'utilisateur a gagn� son pari
-                argent = argent + argentGagne(nombreDeCartes,numeroDePari);
-                System.out.print (gagne);
-                System.out.print (argentGagne(nombreDeCartes,numeroDePari));
-                System.out.println (" $");
-            } else { // L'utilisateur a perdu son pari
-                System.out.println (perdu);
-            }
-            
-            // Fin du pari
-            System.out.println ("Vous disposez maintenant de " + argent + " $");
-            
-            // V�rification si l'utilisateur peut/veut continuer � jouer
-            if (argent < 4) {
-                System.out.println ("Vous n'avez plus assez d'argent, vous ne pouvez continuer.");
-            } else {
-                jouerPartie = jouerPartie();
-            }
-        } // while (Boucle principale)
-        
-        // Messages de fin de programme
-        System.out.println ("Merci d'avoir joue avec moi !");
-        System.out.println ("Vous quittez avec " + argent + " $ en poche.");
-    } // main
-    
 } // Tp2
