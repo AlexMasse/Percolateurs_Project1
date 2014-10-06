@@ -12,6 +12,8 @@ public class Tp2 {
      * Affiche la carte selon sa couleur et sa valeur
      * @param carte doit etre entre 0 et 51 inclusivement
      */
+    final double cout = 2.5;
+
     public static void afficherCarte (int carte) {
         // D�claration des variables locales
         int valeur = PaquetDeCartes.valeur(carte);
@@ -128,7 +130,7 @@ public class Tp2 {
     
      /**
      * Demande a l'utilisateur le montant d'argent qu'il a en sa possession.
-     * Le programme le redemande tant que ce n'est pas superieur ou egal a 4.
+     * Le programme le redemande tant que ce n'est pas superieur ou egal a 5.
      * @return un entier dont la valeur correspond au montant (en $).
      */
     public static int entreeArgent () {
@@ -138,8 +140,8 @@ public class Tp2 {
         // Message d'invite
         System.out.println ("Entrez le montant dont vous disposez : ");
         argent = Clavier.lireInt();
-        while (argent < 4) { // Boucle de validation
-            System.out.println ("*** Le montant doit etre superieur ou egal a 4 : ");
+        while (argent < 5) { // Boucle de validation
+            System.out.println ("*** Le montant doit etre superieur ou egal a 5 : ");
             argent = Clavier.lireInt();
         }
         return argent;
@@ -426,7 +428,7 @@ public class Tp2 {
             System.out.println ("Vous disposez maintenant de " + argent + " $");
             
             // V�rification si l'utilisateur peut/veut continuer � jouer
-            if (argent < 4) {
+            if (argent < 5) {
                 System.out.println ("Vous n'avez plus assez d'argent, vous ne pouvez continuer.");
             } else {
                 jouerPartie = jouerPartie();
