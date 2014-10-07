@@ -135,16 +135,16 @@ public class Tp2 {
      * Le programme le redemande tant que ce n'est pas superieur ou egal a 5.
      * @return un entier dont la valeur correspond au montant (en $).
      */
-    public static int entreeArgent () {
+    public static double entreeArgent () {
         // D�claration de la variable locale
-        int argent;
+        double argent;
         
         // Message d'invite
         System.out.println ("Entrez le montant dont vous disposez : ");
-        argent = Clavier.lireInt();
+        argent = Clavier.lireDouble();
         while (argent < 5) { // Boucle de validation
             System.out.println ("*** Le montant doit etre superieur ou egal a 5 : ");
-            argent = Clavier.lireInt();
+            argent = Clavier.lireDouble();
         }
         return argent;
     } // entreeArgent
@@ -178,16 +178,16 @@ public class Tp2 {
     
      /**
      * Demande � l'utilisateur combien de cartes il d�sire piger.
-     * Si il a moins de 6$, l'ordinateur pige 2 cartes pour lui.
+     * Si il a moins que le cout de 3 piges, l'ordinateur pige 2 cartes pour lui.
      * @param argent doit �tre un entier
      * @return 2 ou 3 cartes
      */
-    public static int nombreDeCartes (int argent) {
+    public static int nombreDeCartes (double argent) {
         // D�claration de la variable locale
         int nombreDeCartes;
         
         // D�cision du nombre de cartes selon le montant d'argent
-        if (argent < (coutPari * 2)) {
+        if (argent < (coutPari * 3)) {
             System.out.println ("Je vais piger deux cartes.");
             nombreDeCartes = 2;
         } else {
@@ -350,7 +350,7 @@ public class Tp2 {
      * @param numeroDePari doit �tre entre 1 et 5
      * @return gain le montant gagn� par l'utilisateur
      */
-    public static int argentGagne (int nombreDeCartes, int numeroDePari) {
+    public static double argentGagne (int nombreDeCartes, int numeroDePari) {
         // D�claration de la variable locale
         int gain = 0;
         
@@ -379,7 +379,7 @@ public class Tp2 {
             
     public static void main (String[] params) {
         // D�claration des variables
-        int argent = 0;
+        double argent = 0;
         int nombreDeCartes = 0;
         boolean jouerPartie;
         int carte1 = 0;

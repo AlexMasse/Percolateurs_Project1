@@ -18,7 +18,7 @@ public class JeuxPariCarte  {
     Jframe plancheJeux
     Main
 
-     */
+
     public static void main(String[] args) throws Exception
     {
         JFrame frame = new JFrame();
