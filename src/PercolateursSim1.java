@@ -27,6 +27,7 @@ public class PercolateursSim1 {
         double argent = 0;
         int nombreDeCartes = 0;
         boolean jouerPartie;
+        // AMELIORATION APPORTEE : 3 int maintenant en 1 array
         int mainDeCartes[] = new int[3];
         int numeroDePari = 0;
         boolean gagnePari;
@@ -34,12 +35,12 @@ public class PercolateursSim1 {
 
         controller.initialiserLeJeu(); // Initialisation de l'ordre des cartes
 
-        // Saisie des variables n�cessaires � l'ex�cution du jeu
-        argent = controller.entreeArgent(); // Entr�e du montant d'argent de l'utilisateur
+        // Saisie des variables necessaires a l'execution du jeu
+        argent = controller.entreeArgent(); // Entree du montant d'argent de l'utilisateur
         jouerPartie = controller.jouerPartie(); // Est-ce l'utilisateur veut jouer?
 
         // Boucle principale
-        while (jouerPartie == true && argent >= (ControleurJeuDePari.COUT_PARI * 2)) {
+        while (jouerPartie && argent >= (ControleurJeuDePari.COUT_PARI * 2)) {
             // Saisie des variables n�cessaires pour un pari
             mainDeCartes[2] = -1; // Puisqu'on ne sait pas le nombre de cartes
             nombreDeCartes = controller.nombreDeCartes(argent); // Nombre de cartes jou�es
