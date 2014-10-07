@@ -26,7 +26,7 @@ public class PercolateursSim1 {
         //TODO : Refactorer la methode main en quelques methodes pour diminuer le main
 
         // D�claration des variables
-        int argent = 0;
+        double argent = 0;
         int nombreDeCartes = 0;
         boolean jouerPartie;
         int carte1 = 0;
@@ -34,8 +34,7 @@ public class PercolateursSim1 {
         int carte3 = 0;
         int numeroDePari = 0;
         boolean gagnePari;
-        String gagne = "Bravo ! Vous avez gagne ";
-        String perdu = "Desole ! Vous avez perdu !";
+
 
         controller.initialiserLeJeu(); // Initialisation de l'ordre des cartes
 
@@ -44,17 +43,17 @@ public class PercolateursSim1 {
         jouerPartie = controller.jouerPartie(); // Est-ce l'utilisateur veut jouer?
 
         // Boucle principale
-        while (jouerPartie == true && argent >= 4) {
+        while (jouerPartie == true && argent >= (ControleurJeuDePari.COUT_PARI * 2)) {
             // Saisie des variables n�cessaires pour un pari
             carte3 = -1; // Puisqu'on ne sait pas le nombre de cartes
             nombreDeCartes = controller.nombreDeCartes(argent); // Nombre de cartes jou�es
-            argent = argent - (2 * nombreDeCartes); // Achat des cartes � 2$ par carte
+            argent = argent - (ControleurJeuDePari.COUT_PARI * nombreDeCartes); // Achat des cartes dependament du cout par carte
             numeroDePari = controller.numeroDePari(); // Pari en jeu
 
             // Affectation et affichage des cartes
             carte1 = PaquetDeCartes.piger();
             carte2 = PaquetDeCartes.piger();
-            System.out.println ("Voici les cartes pigees:");
+            System.out.println (MessagesTp2.MESS_CARTE_PIGEES);
             controller.afficherCarte(carte1);
             controller.afficherCarte(carte2);
             if (nombreDeCartes == 3) {
@@ -65,28 +64,28 @@ public class PercolateursSim1 {
             // V�rification si l'utilisateur gagne et ajout du gain
             gagnePari = controller.gagnePari(numeroDePari,carte1,carte2,carte3);
             if (gagnePari) { // L'utilisateur a gagn� son pari
-                argent = argent + controller.argentGagne(nombreDeCartes,numeroDePari);
-                System.out.print (gagne);
-                System.out.print (controller.argentGagne(nombreDeCartes,numeroDePari));
-                System.out.println (" $");
+                double gain = controller.argentGagne(nombreDeCartes,numeroDePari);
+                argent = argent + gain;
+                System.out.print (MessagesTp2.MESS_GAGNE + gain + " $");
+
             } else { // L'utilisateur a perdu son pari
-                System.out.println (perdu);
+                System.out.println (MessagesTp2.MESS_PERDU);
             }
 
             // Fin du pari
-            System.out.println ("Vous disposez maintenant de " + argent + " $");
+            System.out.println (MessagesTp2.MESS_SUITE_AVEC_TOTAL + argent + " $");
 
             // V�rification si l'utilisateur peut/veut continuer � jouer
-            if (argent < 4) {
-                System.out.println ("Vous n'avez plus assez d'argent, vous ne pouvez continuer.");
+            if (argent < (ControleurJeuDePari.COUT_PARI *2)) {
+                System.out.println (MessagesTp2.MESS_PARTIE_FINIE);
             } else {
                 jouerPartie = controller.jouerPartie();
             }
         } // while (Boucle principale)
 
         // Messages de fin de programme
-        System.out.println ("Merci d'avoir joue avec moi !");
-        System.out.println ("Vous quittez avec " + argent + " $ en poche.");
+
+        System.out.println (MessagesTp2.MESS_CONCLUSION + argent + " $ en poche.");
 
 
         //TODO : J'ai commente l'affichage graphique dans le "main" le temps que ce soit fonctionnel
