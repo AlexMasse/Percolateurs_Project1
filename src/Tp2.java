@@ -12,7 +12,9 @@ public class Tp2 {
      * Affiche la carte selon sa couleur et sa valeur
      * @param carte doit etre entre 0 et 51 inclusivement
      */
-    final double cout = 2.5;
+    // AMELIORATION APPORTEE : constante qui remplacera le cout initial de 2.00 $ pour le pari a 2.5
+    //cette variable permet de changer le cout a tout les endroits en une seule fois
+    static final double coutPari = 2.5;
 
     public static void afficherCarte (int carte) {
         // D�claration des variables locales
@@ -185,7 +187,7 @@ public class Tp2 {
         int nombreDeCartes;
         
         // D�cision du nombre de cartes selon le montant d'argent
-        if (argent < 6) {
+        if (argent < (coutPari * 2)) {
             System.out.println ("Je vais piger deux cartes.");
             nombreDeCartes = 2;
         } else {
@@ -395,11 +397,11 @@ public class Tp2 {
         jouerPartie = jouerPartie(); // Est-ce l'utilisateur veut jouer?
         
         // Boucle principale
-        while (jouerPartie == true && argent >= 4) {
+        while (jouerPartie == true && argent >= (coutPari * 2)) {
             // Saisie des variables n�cessaires pour un pari
             carte3 = -1; // Puisqu'on ne sait pas le nombre de cartes
             nombreDeCartes = nombreDeCartes(argent); // Nombre de cartes jou�es
-            argent = argent - (2 * nombreDeCartes); // Achat des cartes � 2$ par carte
+            argent = argent - (coutPari * nombreDeCartes); // Achat des cartes � 2$ par carte
             numeroDePari = numeroDePari(); // Pari en jeu
             
             // Affectation et affichage des cartes
@@ -428,7 +430,7 @@ public class Tp2 {
             System.out.println ("Vous disposez maintenant de " + argent + " $");
             
             // V�rification si l'utilisateur peut/veut continuer � jouer
-            if (argent < 5) {
+            if (argent < (coutPari *2)) {
                 System.out.println ("Vous n'avez plus assez d'argent, vous ne pouvez continuer.");
             } else {
                 jouerPartie = jouerPartie();
