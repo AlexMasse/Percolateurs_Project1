@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d68c7cd0-22a3-4727-83d5-1d3280b5b0ce" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MessagesTp2.java" afterPath="$PROJECT_DIR$/src/MessagesTp2.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Tp2.java" afterPath="$PROJECT_DIR$/src/Tp2.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Percolateurs_Project1.iws" />
@@ -100,8 +98,8 @@
       <file leaf-file-name="Tp2.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Tp2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.296875" vertical-offset="6837" max-vertical-offset="7616">
-              <caret line="410" column="38" selection-start-line="410" selection-start-column="38" selection-end-line="410" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.25892857" vertical-offset="6837" max-vertical-offset="7616">
+              <caret line="409" column="65" selection-start-line="409" selection-start-column="65" selection-end-line="409" selection-end-column="65" />
               <folding />
             </state>
           </provider>
@@ -488,7 +486,11 @@
       <created>1412658085575</created>
       <updated>1412658085575</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="cout pari v4&#10;corrigé&#10;+ messagesTP2 est integré">
+      <created>1412700130195</created>
+      <updated>1412700130195</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -547,7 +549,8 @@
     <MESSAGE value="cout pari 1 test" />
     <MESSAGE value="cout pari v2" />
     <MESSAGE value="cout pari v3&#10;testé et corrigé" />
-    <option name="LAST_COMMIT_MESSAGE" value="cout pari v3&#10;testé et corrigé" />
+    <MESSAGE value="cout pari v4&#10;corrigé&#10;+ messagesTP2 est integré" />
+    <option name="LAST_COMMIT_MESSAGE" value="cout pari v4&#10;corrigé&#10;+ messagesTP2 est integré" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -954,8 +957,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Tp2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.296875" vertical-offset="6837" max-vertical-offset="7616">
-          <caret line="410" column="38" selection-start-line="410" selection-start-column="38" selection-end-line="410" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.25892857" vertical-offset="6837" max-vertical-offset="7616">
+          <caret line="409" column="65" selection-start-line="409" selection-start-column="65" selection-end-line="409" selection-end-column="65" />
           <folding />
         </state>
       </provider>
