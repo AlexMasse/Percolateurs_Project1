@@ -234,25 +234,24 @@ public class ControleurJeuDePari {
      * V�rifie si, selon le num�ro de pari et les cartes pig�es,
      * l'utilisateur gagne son pari.
      * @param choixPari doit etre un numero entre 1 et 6
-     * @param carte1 et carte2 doivent etre entre 0 et 51
-     * @param carte3 doit �tre entre �gal � 51 ou moins
+     * @param mainCartes tableau de 3 int, donc 3 cartes (0 à 51)
      * @return true si l'utilisateur gagne son pari, false sinon
      */
-    protected boolean gagnePari (int choixPari, int carte1, int carte2, int carte3) {
+    protected boolean gagnePari (int choixPari, int mainCartes[]) {
         // D�claration des variables locales
         boolean pariCarte1 = false;
         boolean pariCarte2 = false;
         boolean pariCarte3 = false;
         boolean gagnePari = false;
         boolean troisCartes = false;
-        int valeurCarte1 = PaquetDeCartes.valeur(carte1);
-        int valeurCarte2 = PaquetDeCartes.valeur(carte2);
+        int valeurCarte1 = PaquetDeCartes.valeur(mainCartes[0]);
+        int valeurCarte2 = PaquetDeCartes.valeur(mainCartes[1]);
         int valeurCarte3 = 0;
         
         // V�rifie si l'utilisateur a pig� 3 cartes
-        if (carte3 > -1) {
+        if (mainCartes[2] > -1) {
             troisCartes = true;
-            valeurCarte3 = PaquetDeCartes.valeur(carte3);
+            valeurCarte3 = PaquetDeCartes.valeur(mainCartes[2]);
         }
         
         // V�rification selon le num�ro de pari
@@ -260,10 +259,10 @@ public class ControleurJeuDePari {
             case 1: // Pari 1
             
                 // V�rifie si les cartes sont des figures
-                pariCarte1 = estUneFigure(carte1);
-                pariCarte2 = estUneFigure(carte2);
+                pariCarte1 = estUneFigure(mainCartes[0]);
+                pariCarte2 = estUneFigure(mainCartes[1]);
                 if (troisCartes) { // L'utilisateur a trois cartes
-                    pariCarte3 = estUneFigure(carte3);
+                    pariCarte3 = estUneFigure(mainCartes[2]);
                 }
                 
                 // V�rifie si au moins une carte respecte la condition
@@ -315,33 +314,33 @@ public class ControleurJeuDePari {
             case 4: // Pari 4
                 if (troisCartes) { // L'utilisateur a trois cartes
                     // V�rification des conditions
-                    if (memeCouleur(carte1,carte2) && memeCouleur(carte1,carte2)) {
+                    if (memeCouleur(mainCartes[0],mainCartes[1]) && memeCouleur(mainCartes[0],mainCartes[2])) {
                         gagnePari = true;
                     }
                 } else { // L'utilisateur a deux cartes
                     // V�rification de la condition
-                    if (memeCouleur(carte1,carte2)) {
+                    if (memeCouleur(mainCartes[0],mainCartes[1])) {
                         gagnePari = true;
                     }
                 }
                 break;
             case 5: // Pari 5
+                gagnePari = estUneFigure(mainCartes[0]) && estUneFigure(mainCartes[1]);
+                if (troisCartes) {
+                    gagnePari = gagnePari && estUneFigure(mainCartes[2]);
+                }
+                break;
+            case 6: // Pari 6
                 if (troisCartes) { // L'utilisateur a trois cartes
                     // V�rification des conditions
-                    if (memeValeur(carte1,carte2) && memeValeur(carte1,carte2)) {
+                    if (memeValeur(mainCartes[0],mainCartes[1]) && memeValeur(mainCartes[0],mainCartes[2])) {
                         gagnePari = true;
                     }
                 } else { // L'utilisateur a deux cartes
                     // V�rification de la condition
-                    if (memeValeur(carte1,carte2)) {
+                    if (memeValeur(mainCartes[0],mainCartes[1])) {
                         gagnePari = true;
                     }
-                }
-                break;
-            case 6: // Pari 6
-                gagnePari = estUneFigure(carte1) && estUneFigure(carte2);
-                if (troisCartes) {
-                    gagnePari = gagnePari && estUneFigure(carte3);
                 }
                 break;
             default: break;
@@ -353,7 +352,7 @@ public class ControleurJeuDePari {
      /**
      * Donne le montant d'argent gagn� par l'utilisateur selon son pari.
      * @param nombreDeCartes doit �tre 2 ou 3
-     * @param numeroDePari doit �tre entre 1 et 5
+     * @param numeroDePari doit �tre entre 1 et 6
      * @return gain le montant gagn� par l'utilisateur
      */
     protected double argentGagne (int nombreDeCartes, int numeroDePari) {
@@ -375,10 +374,10 @@ public class ControleurJeuDePari {
                 gain = (3 * (int)(Math.pow(nombreDeCartes - 1,2))) + 2;
                 break;
             case 5: // Pari 5
-                gain = (2 * (int)(Math.pow(nombreDeCartes - 1,3))) + 2;
+                gain = 5 * nombreDeCartes;
                 break;
             case 6: // Pari 6
-                gain = 5 * nombreDeCartes;
+                gain = (2 * (int)(Math.pow(nombreDeCartes - 1,3))) + 2;
                 break;
             default: break;
         } // switch (numeroDePari)

@@ -13,11 +13,9 @@ public class PercolateursSim1 {
     public static String CARREAU = "\u2666";
 
     /*
-
     Joueur joueur
     Jframe plancheJeux
     Main
-
      */
     public static void main(String[] args) throws Exception
     {
@@ -29,9 +27,7 @@ public class PercolateursSim1 {
         double argent = 0;
         int nombreDeCartes = 0;
         boolean jouerPartie;
-        int carte1 = 0;
-        int carte2 = 0;
-        int carte3 = 0;
+        int mainDeCartes[] = new int[3];
         int numeroDePari = 0;
         boolean gagnePari;
 
@@ -45,24 +41,24 @@ public class PercolateursSim1 {
         // Boucle principale
         while (jouerPartie == true && argent >= (ControleurJeuDePari.COUT_PARI * 2)) {
             // Saisie des variables n�cessaires pour un pari
-            carte3 = -1; // Puisqu'on ne sait pas le nombre de cartes
+            mainDeCartes[2] = -1; // Puisqu'on ne sait pas le nombre de cartes
             nombreDeCartes = controller.nombreDeCartes(argent); // Nombre de cartes jou�es
             argent = argent - (ControleurJeuDePari.COUT_PARI * nombreDeCartes); // Achat des cartes dependament du cout par carte
             numeroDePari = controller.numeroDePari(); // Pari en jeu
 
             // Affectation et affichage des cartes
-            carte1 = PaquetDeCartes.piger();
-            carte2 = PaquetDeCartes.piger();
+            mainDeCartes[0] = PaquetDeCartes.piger();
+            mainDeCartes[1] = PaquetDeCartes.piger();
             System.out.println (MessagesTp2.MESS_CARTE_PIGEES);
-            controller.afficherCarte(carte1);
-            controller.afficherCarte(carte2);
+            controller.afficherCarte(mainDeCartes[0]);
+            controller.afficherCarte(mainDeCartes[1]);
             if (nombreDeCartes == 3) {
-                carte3 = PaquetDeCartes.piger();
-                controller.afficherCarte(carte3);
+                mainDeCartes[2] = PaquetDeCartes.piger();
+                controller.afficherCarte(mainDeCartes[2]);
             }
 
             // V�rification si l'utilisateur gagne et ajout du gain
-            gagnePari = controller.gagnePari(numeroDePari,carte1,carte2,carte3);
+            gagnePari = controller.gagnePari(numeroDePari,mainDeCartes);
             if (gagnePari) { // L'utilisateur a gagn� son pari
                 double gain = controller.argentGagne(nombreDeCartes,numeroDePari);
                 argent = argent + gain;
