@@ -1,3 +1,5 @@
+import java.math.BigDecimal;
+
 /**
  * I N F 1 1 2 0
  *
@@ -14,7 +16,7 @@ public class Tp2 {
      */
     // AMELIORATION APPORTEE : constante qui remplacera le cout initial de 2.00 $ pour le pari a 2.5
     //cette variable permet de changer le cout a tout les endroits en une seule fois
-    static final double coutPari = 2.5;
+    static final double COUT_PARI = 2.5;
 
     public static void afficherCarte (int carte) {
         // D�claration des variables locales
@@ -124,7 +126,7 @@ public class Tp2 {
      */
     public static void initialiserLeJeu () {
         int germe;
-        System.out.println ( "Entrez un nombre entier pour initialiser le jeu : " );
+        System.out.println ( MessagesTp2.MESS_INITIALISER );
         germe = Clavier.lireInt ();
         PaquetDeCartes.initialiserJeuDeCarte ( germe );
         PaquetDeCartes.brasser();
@@ -140,10 +142,10 @@ public class Tp2 {
         double argent;
         
         // Message d'invite
-        System.out.println ("Entrez le montant dont vous disposez : ");
+        System.out.println (MessagesTp2.MESS_COMBIEN_MISE);
         argent = Clavier.lireDouble();
-        while (argent < 5) { // Boucle de validation
-            System.out.println ("*** Le montant doit etre superieur ou egal a 5 : ");
+        while (argent < (COUT_PARI * 2)) { // Boucle de validation
+            System.out.println (MessagesTp2.MESS_ERREUR_MONTANT_INITIAL);
             argent = Clavier.lireDouble();
         }
         return argent;
@@ -156,21 +158,22 @@ public class Tp2 {
      */
     public static boolean jouerPartie () {
         // D�claration des variables locales
-        String invite = "Voulez-vous jouer une partie ? ";
+        // AMELIORATION APPORTEE : changer le mode d'affichage, on utilise maintenant la classe MessageTp2.java
+
         String reponse;
         boolean jouerUnePartie = false;
         
         // Message d'invite
-        System.out.println (invite);
+        System.out.println (MessagesTp2.MESS_VEUT_JOUER);
         reponse = Clavier.lireString();
         
         //Boucle de validation
-        while (!reponse.equalsIgnoreCase("oui") && !reponse.equalsIgnoreCase("non")) {
-            System.out.println ("*** vous devez repondre par oui ou non :");
+        while (!reponse.equalsIgnoreCase("oui") && !reponse.equalsIgnoreCase("non") && !reponse.equalsIgnoreCase("o") && !reponse.equalsIgnoreCase("n")) {
+            System.out.println (MessagesTp2.MESS_ERREUR_OUI_NON);
             reponse = Clavier.lireString();
         }
         
-        if (reponse.equalsIgnoreCase("oui")) {
+        if (reponse.equalsIgnoreCase("oui") || reponse.equalsIgnoreCase("o")) {
             jouerUnePartie = true;
         }
         return jouerUnePartie;
@@ -187,16 +190,16 @@ public class Tp2 {
         int nombreDeCartes;
         
         // D�cision du nombre de cartes selon le montant d'argent
-        if (argent < (coutPari * 3)) {
-            System.out.println ("Je vais piger deux cartes.");
+        if (argent < (COUT_PARI * 3)) {
+            System.out.println (MessagesTp2.MESS_PIGE_MINIMUM);
             nombreDeCartes = 2;
         } else {
-            System.out.println ("Combien de cartes voulez-vous piger (2 ou 3) ?");
+            System.out.println (MessagesTp2.MESS_NBR_CARTES);
             nombreDeCartes = Clavier.lireInt();
             
             // Boucle de validation
             while (nombreDeCartes != 2 && nombreDeCartes != 3) {
-                System.out.println ("*** Le nombre de cartes doit etre 2 ou 3");
+                System.out.println (MessagesTp2.MESS_ERREUR_NBR_CARTE);
                 nombreDeCartes = Clavier.lireInt();
             }
         }
@@ -213,20 +216,13 @@ public class Tp2 {
         int numeroDePari;
         
         // Affichage des choix de paris
-        System.out.println ("Quel pari voulez-vous faire ?");
-        System.out.println (" 1 : au moins une figure");
-        System.out.println (" 2 : toutes < 5");
-        System.out.println (" 3 : somme paire");
-        System.out.println (" 4 : meme couleur");
-        System.out.println (" 5 : meme valeur");
-        
         // D�cision de l'utilisateur
-        System.out.println ("Votre choix =>");
+        System.out.print (MessagesTp2.MENU);
         numeroDePari = Clavier.lireInt();
         
         // Boucle de validation
-        while (numeroDePari < 1 || numeroDePari > 5) {
-            System.out.print ("*** vous devez choisir un numero entre 1 et 5 :");
+        while (numeroDePari < 1 || numeroDePari > 6) {
+            System.out.print (MessagesTp2.MESS_ERREUR_MENU);
             numeroDePari = Clavier.lireInt();
         }
         return numeroDePari;
@@ -380,6 +376,7 @@ public class Tp2 {
     public static void main (String[] params) {
         // D�claration des variables
         double argent = 0;
+
         int nombreDeCartes = 0;
         boolean jouerPartie;
         int carte1 = 0;
@@ -387,8 +384,7 @@ public class Tp2 {
         int carte3 = 0;
         int numeroDePari = 0;
         boolean gagnePari;
-        String gagne = "Bravo ! Vous avez gagne ";
-        String perdu = "Desole ! Vous avez perdu !";
+
 
         initialiserLeJeu(); // Initialisation de l'ordre des cartes
         
@@ -397,17 +393,17 @@ public class Tp2 {
         jouerPartie = jouerPartie(); // Est-ce l'utilisateur veut jouer?
         
         // Boucle principale
-        while (jouerPartie == true && argent >= (coutPari * 2)) {
+        while (jouerPartie == true && argent >= (COUT_PARI * 2)) {
             // Saisie des variables n�cessaires pour un pari
             carte3 = -1; // Puisqu'on ne sait pas le nombre de cartes
             nombreDeCartes = nombreDeCartes(argent); // Nombre de cartes jou�es
-            argent = argent - (coutPari * nombreDeCartes); // Achat des cartes � 2$ par carte
+            argent = argent - (COUT_PARI * nombreDeCartes); // Achat des cartes � 2$ par carte
             numeroDePari = numeroDePari(); // Pari en jeu
             
             // Affectation et affichage des cartes
             carte1 = PaquetDeCartes.piger();
             carte2 = PaquetDeCartes.piger();
-            System.out.println ("Voici les cartes pigees:");
+            System.out.println (MessagesTp2.MESS_CARTE_PIGEES);
             afficherCarte(carte1);
             afficherCarte(carte2);
             if (nombreDeCartes == 3) {
@@ -418,28 +414,29 @@ public class Tp2 {
             // V�rification si l'utilisateur gagne et ajout du gain
             gagnePari = gagnePari(numeroDePari,carte1,carte2,carte3);
             if (gagnePari) { // L'utilisateur a gagn� son pari
-                argent = argent + argentGagne(nombreDeCartes,numeroDePari);
-                System.out.print (gagne);
-                System.out.print (argentGagne(nombreDeCartes,numeroDePari));
-                System.out.println (" $");
+                double gain = argentGagne(nombreDeCartes,numeroDePari);
+                argent = argent + gain;
+                System.out.print (MessagesTp2.MESS_GAGNE + gain + " $");
+
+
             } else { // L'utilisateur a perdu son pari
-                System.out.println (perdu);
+                System.out.println (MessagesTp2.MESS_PERDU);
             }
             
             // Fin du pari
-            System.out.println ("Vous disposez maintenant de " + argent + " $");
+            System.out.println (MessagesTp2.MESS_SUITE_AVEC_TOTAL + argent + " $");
             
             // V�rification si l'utilisateur peut/veut continuer � jouer
-            if (argent < (coutPari *2)) {
-                System.out.println ("Vous n'avez plus assez d'argent, vous ne pouvez continuer.");
+            if (argent < (COUT_PARI *2)) {
+                System.out.println (MessagesTp2.MESS_PARTIE_FINIE);
             } else {
                 jouerPartie = jouerPartie();
             }
         } // while (Boucle principale)
         
         // Messages de fin de programme
-        System.out.println ("Merci d'avoir joue avec moi !");
-        System.out.println ("Vous quittez avec " + argent + " $ en poche.");
+
+        System.out.println (MessagesTp2.MESS_CONCLUSION + argent + " $ en poche.");
     } // main
     
 } // Tp2
