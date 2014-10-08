@@ -63,7 +63,7 @@ public class PercolateursSim1 {
             if (gagnePari) { // L'utilisateur a gagn� son pari
                 double gain = controller.argentGagne(nombreDeCartes,numeroDePari);
                 argent = argent + gain;
-                System.out.print (MessagesTp2.MESS_GAGNE + gain + " $");
+                System.out.println (MessagesTp2.MESS_GAGNE + gain + " $");
 
             } else { // L'utilisateur a perdu son pari
                 System.out.println (MessagesTp2.MESS_PERDU);
