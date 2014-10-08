@@ -401,7 +401,7 @@ public class Tp2 {
             // Saisie des variables n�cessaires pour un pari
             carte3 = -1; // Puisqu'on ne sait pas le nombre de cartes
             nombreDeCartes = nombreDeCartes(argent); // Nombre de cartes jou�es
-            argent = argent - (coutPari * nombreDeCartes); // Achat des cartes � 2$ par carte
+           // argent = argent - (coutPari * nombreDeCartes); // Achat des cartes � 2$ par carte
             numeroDePari = numeroDePari(); // Pari en jeu
             
             // Affectation et affichage des cartes
@@ -441,5 +441,5 @@ public class Tp2 {
         System.out.println ("Merci d'avoir joue avec moi !");
         System.out.println ("Vous quittez avec " + argent + " $ en poche.");
     } // main
-    
+
 } // Tp2

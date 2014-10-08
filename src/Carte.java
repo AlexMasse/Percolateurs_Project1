@@ -3,35 +3,29 @@
  */
 public class Carte {
 
-    //est-ce vraiment utile comme classe ??
-
     private final int couleur;
     private final int valeur;
+    private final int positionPaquet;
 
     //doit être une carte valide
-    public Carte (int positionPaquet ) {
-        if (positionPaquet < 1 || positionPaquet > 52) {
-            throw new IllegalArgumentException();
-        }
-        this.couleur = couleurCarte(positionPaquet);
-        this.valeur  = valeurCarte(positionPaquet);
+    public Carte (int couleur, int valeur, int positionPaquet) {
+        this.couleur = couleur;
+        this.valeur  = valeur;
+        this.positionPaquet = positionPaquet;
     }
 
-    public String couleurToString() {
-
-        return "";
-    }
     public int getValeur() {
+
         return this.valeur;
     }
     public int getCouleur() {
+
         return this.couleur;
     }
-    private int couleurCarte(int positionPaquet) {
-        return 0;
+    public int getPositionPaquet() {
+
+        return this.positionPaquet;
     }
-    private int valeurCarte(int positionPaquet) {
-        return 0;
-    }
+
 
 }

@@ -26,9 +26,44 @@ public class JeuxPariCarte  {
 
         frame.setTitle("Jeux de paris");
 
-        VueJeuxCarte jPanelCarte = new VueJeuxCarte(400, 200);
 
+
+        VueJeuxCarte jPanelCarte = new VueJeuxCarte(350, 125);
+        Carte[] cartes = new Carte[4];
+        cartes[0] = new Carte(1,1,0);
+        cartes[1] = new Carte(1,1,5);
+        cartes[2] = new Carte(1,1,12);
+        cartes[3] = new Carte(1,1,10);
+
+        /*
+        ImageCarte image = new ImageCarte(carte);
+        ImageCarte image2 = new ImageCarte(carte2);
+        ImageCarte image3 = new ImageCarte(carte3);
+        ImageCarte image4 = new ImageCarte(carte4);
+        jPanelCarte.add(image);
+        jPanelCarte.add(image2);
+        jPanelCarte.add(image3);
+        jPanelCarte.removeAll();
+        jPanelCarte.add(image4);
+        */
+        jPanelCarte.ajouter(cartes, 2);
+/*
+        JPanel jPanelCarte = new JPanel();
+        jPanelCarte.setLayout(new FlowLayout());
+        jPanelCarte.setBackground(new java.awt.Color(34,139,34));
+        jPanelCarte.setPreferredSize(new java.awt.Dimension(300, 200));
+        //arte carte = new Carte(1,1);
+        ImageIcon imageCarte = new ImageIcon(getClass().getResource("images/c1.png") );
+        JLabel jLabelCarte = new JLabel(imageCarte);
+
+        */
         frame.add(jPanelCarte);
+        frame.add(jPanelCarte);
+        //jPanelCarte.add(image);
+
+
+
+        //frame.repaint();
         frame.pack();
         frame.setVisible(true);
         System.out.println(PIQUE + "\033[31m" + " g " + CARREAU);
