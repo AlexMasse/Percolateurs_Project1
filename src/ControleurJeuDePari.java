@@ -11,15 +11,15 @@ public class ControleurJeuDePari {
     * Cette classe est instanciee dans la methode "main" pour l'acces a ses methodes.
     */
 
-    /**
-     * Affiche la carte selon sa couleur et sa valeur
-     * @param carte doit etre entre 0 et 51 inclusivement
-     */
+
     // AMELIORATION APPORTEE : constante qui remplacera le cout initial de 2.00 $ pour le pari a 2.5
     //cette variable permet de changer le cout a tout les endroits en une seule fois
     static final double COUT_PARI = 2.5;
 
-    
+    /**
+     * Affiche la carte selon sa couleur et sa valeur
+     * @param carte doit etre entre 0 et 51 inclusivement
+     */
     protected void afficherCarte (int carte) {
         // D�claration des variables locales
         int valeur = PaquetDeCartes.valeur(carte);
@@ -72,11 +72,8 @@ public class ControleurJeuDePari {
         int valeur2 = PaquetDeCartes.valeur(carte2);
         
         // V�rification des valeurs des cartes
-        if (valeur1 == valeur2) {
-            memeValeur = true;
-        } else {
-            memeValeur = false;
-        }
+        // AMELIORATION APPORTEE : simplification de la verification de la condition
+        memeValeur = valeur1 == valeur2;
         return memeValeur;
     } // memeValeur
     
@@ -93,11 +90,8 @@ public class ControleurJeuDePari {
         int couleur2 = PaquetDeCartes.couleur(carte2);
         
         // V�rification des couleurs des cartes
-        if (couleur1 == couleur2) {
-            memeCouleur = true;
-        } else {
-            memeCouleur = false;
-        }
+        // AMELIORATION APPORTEE : simplification de la verification de la condition
+        memeCouleur = couleur1 == couleur2;
         return memeCouleur;
     } // memeCouleur
     
@@ -112,13 +106,8 @@ public class ControleurJeuDePari {
         int valeur = (carte % 13);
         
         // V�rification de la valeur des cartes
-        if (valeur == 0) {
-            estUneFigure = true;
-        } else if (valeur > 9 && valeur < 13) {
-            estUneFigure = true;
-        } else {
-            estUneFigure = false;
-        }
+        // AMELIORATION APPORTEE : simplification de la verification de la condition
+        estUneFigure = valeur == 0 || valeur > 9 && valeur < 13;
         return estUneFigure;
     } // estUneFigure
     
@@ -266,7 +255,8 @@ public class ControleurJeuDePari {
                 }
                 
                 // V�rifie si au moins une carte respecte la condition
-                if (pariCarte1 == true || pariCarte2 == true || pariCarte3 == true) {
+                // AMELIORATION APPORTEE : simplification de la verification de la condition
+                if (pariCarte1 || pariCarte2 || pariCarte3) {
                     gagnePari = true;
                 }
                 break;
@@ -288,12 +278,14 @@ public class ControleurJeuDePari {
                 // V�rification de la condition
                 if (troisCartes) { // L'utilisateur a trois cartes
                     // V�rifie si les trois cartes respectent la condition
-                    if (pariCarte1 == true && pariCarte2 == true && pariCarte3 == true) {
+                    // AMELIORATION APPORTEE : simplification de la verification de la condition
+                    if (pariCarte1 && pariCarte2 && pariCarte3) {
                         gagnePari = true;
                     } 
                 } else { // L'utilisateur a deux cartes
                     // V�rifie si les deux cartes pig�es respectent la condition
-                    if (pariCarte1 == true && pariCarte2 == true) {
+                    // AMELIORATION APPORTEE : simplification de la verification de la condition
+                    if (pariCarte1 && pariCarte2) {
                         gagnePari = true;
                     }
                 }
