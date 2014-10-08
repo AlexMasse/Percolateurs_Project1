@@ -30,7 +30,7 @@ public class JeuxPariCarte  {
 
         VueJeuxPari jPanelCarte = new VueJeuxPari(350, 125);
         Carte[] cartes = new Carte[4];
-        cartes[0] = new Carte(1,1,0);
+        cartes[0] = new Carte(0,1,0);
         cartes[1] = new Carte(1,1,5);
         cartes[2] = new Carte(1,1,12);
         cartes[3] = new Carte(1,1,10);
@@ -46,7 +46,7 @@ public class JeuxPariCarte  {
         jPanelCarte.removeAll();
         jPanelCarte.add(image4);
         */
-        jPanelCarte.ajouter(cartes, 3);
+        jPanelCarte.afficher(cartes, 3);
 /*
         JPanel jPanelCarte = new JPanel();
         jPanelCarte.setLayout(new FlowLayout());
@@ -66,8 +66,6 @@ public class JeuxPariCarte  {
         //frame.repaint();
         frame.pack();
         frame.setVisible(true);
-        System.out.println(PIQUE + "\033[31m" + " g " + CARREAU);
-        System.out.println("\033[0m BLACK");
     }
 
     public void creerPanneauJeux() {
