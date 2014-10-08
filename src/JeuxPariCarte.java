@@ -28,7 +28,7 @@ public class JeuxPariCarte  {
 
 
 
-        VueJeuxCarte jPanelCarte = new VueJeuxCarte(350, 125);
+        VueJeuxPari jPanelCarte = new VueJeuxPari(350, 125);
         Carte[] cartes = new Carte[4];
         cartes[0] = new Carte(1,1,0);
         cartes[1] = new Carte(1,1,5);
