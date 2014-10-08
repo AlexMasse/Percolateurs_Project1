@@ -46,7 +46,7 @@ public class JeuxPariCarte  {
         jPanelCarte.removeAll();
         jPanelCarte.add(image4);
         */
-        jPanelCarte.ajouter(cartes, 2);
+        jPanelCarte.ajouter(cartes, 3);
 /*
         JPanel jPanelCarte = new JPanel();
         jPanelCarte.setLayout(new FlowLayout());
