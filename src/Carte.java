@@ -13,6 +13,12 @@ public class Carte {
         this.valeur  = valeur;
         this.positionPaquet = positionPaquet;
     }
+    public Carte (int positionPaquet) {
+        this.couleur = PaquetDeCartes.couleur(positionPaquet);
+        this.valeur  = PaquetDeCartes.valeur(positionPaquet);
+        this.positionPaquet = positionPaquet;
+    }
+
 
     public int getValeur() {
 
