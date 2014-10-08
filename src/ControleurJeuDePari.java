@@ -207,6 +207,19 @@ public class ControleurJeuDePari {
         }
         return nombreDeCartes;
     } // nombreDeCartes
+
+    // NOUVELLE FONCTIONNALITE : SOMME DES CARTES
+    /**
+     * Calule la somme des cartes pigees
+     * @param cartes est un tableau des cartes pigees
+     * @param nombreDeCartes est le nombre de cartes
+     * @return la somme des 2 ou 3 cartes
+     */
+    protected int sommeCartes (int[] cartes, int nombreDeCartes) {
+        int somme = PaquetDeCartes.valeur(cartes[0]) + PaquetDeCartes.valeur(cartes[1]);
+        if (nombreDeCartes == 3) somme += PaquetDeCartes.valeur(cartes[2]);
+        return somme;
+    }
     
      /**
      * Affiche les diff�rents choix de paris et demande a l'utilisateur
