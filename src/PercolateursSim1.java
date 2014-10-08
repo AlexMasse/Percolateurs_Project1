@@ -7,10 +7,6 @@ import javax.swing.*;
 
 public class PercolateursSim1 {
 
-    public static String PIQUE   = "\u2660";
-    public static String COEUR   = "\u2665";
-    public static String TREFLE  = "\u2663";
-    public static String CARREAU = "\u2666";
 
     /*
     Joueur joueur
@@ -22,6 +18,16 @@ public class PercolateursSim1 {
         ControleurJeuDePari controller = new ControleurJeuDePari();
 
         //TODO : Refactorer la methode main en quelques methodes pour diminuer le main
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        frame.setTitle("Jeux de paris");
+
+        VueJeuxPari jPanelCarte = new VueJeuxPari(300, 150);
+
+
+        frame.add(jPanelCarte);
+
 
         // D�claration des variables
         double argent = 0;
@@ -57,6 +63,15 @@ public class PercolateursSim1 {
                 mainDeCartes[2] = PaquetDeCartes.piger();
                 controller.afficherCarte(mainDeCartes[2]);
             }
+            Carte[] cartes = new Carte[3];
+            cartes[0] = new Carte(mainDeCartes[0]);
+            cartes[1] = new Carte(mainDeCartes[1]);
+            cartes[2] = new Carte(mainDeCartes[2]);
+
+
+            jPanelCarte.afficher(cartes, nombreDeCartes);
+            frame.pack();
+            frame.setVisible(true);
 
             // V�rification si l'utilisateur gagne et ajout du gain
             gagnePari = controller.gagnePari(numeroDePari,mainDeCartes);
@@ -78,6 +93,8 @@ public class PercolateursSim1 {
             } else {
                 jouerPartie = controller.jouerPartie();
             }
+
+
         } // while (Boucle principale)
 
         // Messages de fin de programme
@@ -86,24 +103,25 @@ public class PercolateursSim1 {
 
 
         //TODO : J'ai commente l'affichage graphique dans le "main" le temps que ce soit fonctionnel
-
-        /*JFrame frame = new JFrame();
+/*
+        JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         frame.setTitle("Jeux de paris");
+        Carte[] cartes = new Carte[3];
+        cartes[0] = new Carte(mainDeCartes[0]);
+        cartes[1] = new Carte(mainDeCartes[1]);
+        cartes[2] = new Carte(mainDeCartes[2]);
 
-        VueJeuxCarte jPanelCarte = new VueJeuxCarte(400, 200);
+        VueJeuxPari jPanelCarte = new VueJeuxPari(300, 150);
 
-        frame.add(jPanelCarte.getjPanel());
+        jPanelCarte.afficher(cartes, nombreDeCartes);
+        frame.add(jPanelCarte);
         frame.pack();
         frame.setVisible(true);
-        System.out.println(PIQUE + "\033[31m" + " g " + CARREAU);
-        System.out.println("\033[0m BLACK");*/
+*/
     }
 
-    public void creerPanneauJeux() {
-
-    }
 
     //si on veut traiter la fermeture de la fenetre
     /*
