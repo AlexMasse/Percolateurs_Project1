@@ -29,10 +29,36 @@ public class VueJeuxPari extends JPanel {
     }
 
     private void afficherConsole(Carte carte) {
-        System.out.println(".---.");
-        System.out.println("|" + COULEURS[carte.getCouleur()] + "" + carte.getValeur() + " |");
-        System.out.println("| "  + "" + carte.getValeur() + COULEURS[carte.getCouleur()] + "|");
-        System.out.println("'---'");
-    }
+        String dessus = ".---.";
+        String dessous = "'---'";
+        String valeur;
 
+        if (carte.getValeur() == 10) {
+            dessus = ".----.";
+            dessous = "'----'";
+        }
+
+        switch (carte.getValeur()) {
+            case 1:
+                valeur = "A";
+                break;
+            case 11:
+                valeur = "V";
+                break;
+            case 12:
+                valeur = "D";
+                break;
+            case 13:
+                valeur = "K";
+                break;
+            default:
+                valeur = Integer.toString(carte.getValeur());
+                break;
+        }
+
+        System.out.println(dessus);
+        System.out.println("|" + COULEURS[carte.getCouleur()] + "" + valeur + " |");
+        System.out.println("| "  + "" + valeur + COULEURS[carte.getCouleur()] + "|");
+        System.out.println(dessous);
+    }
 }
