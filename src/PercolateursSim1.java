@@ -63,6 +63,11 @@ public class PercolateursSim1 {
                 mainDeCartes[2] = PaquetDeCartes.piger();
                 controller.afficherCarte(mainDeCartes[2]);
             }
+
+            // Affichage de la somme des cartes
+            System.out.println(MessagesTp2.MESS_SOMME_CARTES + controller.sommeCartes(mainDeCartes, nombreDeCartes));
+
+            // Conversion des cartes en objet Carte pour l'affichage graphique
             Carte[] cartes = new Carte[3];
             cartes[0] = new Carte(mainDeCartes[0]);
             cartes[1] = new Carte(mainDeCartes[1]);
@@ -100,41 +105,6 @@ public class PercolateursSim1 {
         // Messages de fin de programme
 
         System.out.println (MessagesTp2.MESS_CONCLUSION + argent + " $ en poche.");
-
-
-        //TODO : J'ai commente l'affichage graphique dans le "main" le temps que ce soit fonctionnel
-/*
-        JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        frame.setTitle("Jeux de paris");
-        Carte[] cartes = new Carte[3];
-        cartes[0] = new Carte(mainDeCartes[0]);
-        cartes[1] = new Carte(mainDeCartes[1]);
-        cartes[2] = new Carte(mainDeCartes[2]);
-
-        VueJeuxPari jPanelCarte = new VueJeuxPari(300, 150);
-
-        jPanelCarte.afficher(cartes, nombreDeCartes);
-        frame.add(jPanelCarte);
-        frame.pack();
-        frame.setVisible(true);
-*/
-    }
-
-
-    //si on veut traiter la fermeture de la fenetre
-    /*
-    public void windowClosing(WindowEvent e) {
         System.exit(0);
     }
-
-
-    public void windowOpened(WindowEvent e) {}
-    public void windowActivated(WindowEvent e) {}
-    public void windowIconified(WindowEvent e) {}
-    public void windowDeiconified(WindowEvent e) {}
-    public void windowDeactivated(WindowEvent e) {}
-    public void windowClosed(WindowEvent e) {}
-    */
 }
