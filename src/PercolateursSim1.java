@@ -23,7 +23,7 @@ public class PercolateursSim1 {
 
         frame.setTitle("Jeux de paris");
 
-        VueJeuxPari jPanelCarte = new VueJeuxPari(300, 150);
+        VueJeuxPari jPanelCarte = new VueJeuxPari(250, 150);
 
 
         frame.add(jPanelCarte);
