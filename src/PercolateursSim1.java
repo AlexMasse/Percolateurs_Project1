@@ -20,6 +20,7 @@ public class PercolateursSim1 {
         //TODO : Refactorer la methode main en quelques methodes pour diminuer le main
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setAlwaysOnTop(true);
 
         frame.setTitle("Jeux de paris");
 
@@ -65,7 +66,7 @@ public class PercolateursSim1 {
             }
 
             // Affichage de la somme des cartes
-            System.out.println(MessagesTp2.MESS_SOMME_CARTES + controller.sommeCartes(mainDeCartes, nombreDeCartes));
+            System.out.println(controller.sommeCartes(mainDeCartes, nombreDeCartes));
 
             // Conversion des cartes en objet Carte pour l'affichage graphique
             Carte[] cartes = new Carte[3];
