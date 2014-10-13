@@ -3,6 +3,8 @@
  */
 import java.awt.*;
 import java.awt.event.*;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import javax.swing.*;
 
 public class PercolateursSim1 {
@@ -32,6 +34,7 @@ public class PercolateursSim1 {
 
         // D�claration des variables
         double argent = 0;
+        NumberFormat deuxDeci = new DecimalFormat("#.00");
         int nombreDeCartes = 0;
         boolean jouerPartie;
         // AMELIORATION APPORTEE : 3 int maintenant en 1 array
@@ -84,14 +87,14 @@ public class PercolateursSim1 {
             if (gagnePari) { // L'utilisateur a gagn� son pari
                 double gain = controller.argentGagne(nombreDeCartes,numeroDePari);
                 argent = argent + gain;
-                System.out.println (MessagesTp2.MESS_GAGNE + gain + " $");
+                System.out.println (MessagesTp2.MESS_GAGNE + deuxDeci.format(gain) + " $");
 
             } else { // L'utilisateur a perdu son pari
                 System.out.println (MessagesTp2.MESS_PERDU);
             }
 
             // Fin du pari
-            System.out.println (MessagesTp2.MESS_SUITE_AVEC_TOTAL + argent + " $");
+            System.out.println (MessagesTp2.MESS_SUITE_AVEC_TOTAL + deuxDeci.format(argent) + " $");
 
             // V�rification si l'utilisateur peut/veut continuer � jouer
             if (argent < (ControleurJeuDePari.COUT_PARI *2)) {
@@ -105,7 +108,7 @@ public class PercolateursSim1 {
 
         // Messages de fin de programme
 
-        System.out.println (MessagesTp2.MESS_CONCLUSION + argent + " $ en poche.");
+        System.out.println (MessagesTp2.MESS_CONCLUSION + deuxDeci.format(argent) + " $ en poche.");
         System.exit(0);
     }
 }
