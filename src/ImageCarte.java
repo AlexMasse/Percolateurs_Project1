@@ -6,7 +6,7 @@
  * On manipule l'image de la carte comme un JLabel.
  *
  * Droits d'auteur sur les images  :
- * Inconnu. «"Classic" Playing Cards».  In Playing cards. cards_png.zip. [fichier .zip]. jfitz.com, [En ligne],
+ * John Fitzgibbon. «Original "Windows" Playing Cards».  In Playing cards. cards_png.zip. [fichier .zip]. jfitz.com, [En ligne],
  * http://www.jfitz.com/cards/index.html (Page consultee le 1er octobre 2014)
  *
  * notice originale
