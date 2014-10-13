@@ -1,36 +1,47 @@
 /**
  * Created by ultimatum on 2014-10-02.
  */
-import java.awt.*;
-import java.awt.event.*;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import javax.swing.*;
 
 public class PercolateursSim1 {
 
+    //temporairement pour scenario test
+    private static final int[][] TESTS = {{33, 51, -1}, {38, 50, 24}, {39, 0, 48}};
+    private static int nbTests = 0;
+    private static int compteurTest = 0;
+    private static  boolean test = false;
 
-    /*
-    Joueur joueur
-    Jframe plancheJeux
-    Main
-     */
+
     public static void main(String[] args) throws Exception
     {
+        //TEST
+        for (String s: args) {
+            System.out.println(s);
+            if (s.equals("test1")) {
+                test = true;
+                nbTests = 2;
+                System.out.println("!!!MODE TEST #1!!!");
+            }
+            if (s.equals("test2")) {
+                test = true;
+                nbTests = 3;
+                compteurTest = 2;
+                System.out.println("!!!MODE TEST #2!!!");
+            }
+        }
+
+        // AMELIORATION APPORTEE : MVC
         ControleurJeuDePari controller = new ControleurJeuDePari();
-
-        //TODO : Refactorer la methode main en quelques methodes pour diminuer le main
+        // AMELIORATION APPORTEE : Affichage copmplexe
         JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setAlwaysOnTop(true);
-
         frame.setTitle("Jeux de paris");
-
         VueJeuxPari jPanelCarte = new VueJeuxPari(250, 150);
-
-
         frame.add(jPanelCarte);
-
+        frame.pack();
+        frame.setVisible(true);
 
         // D�claration des variables
         double argent = 0;
@@ -57,26 +68,38 @@ public class PercolateursSim1 {
             argent = argent - (ControleurJeuDePari.COUT_PARI * nombreDeCartes); // Achat des cartes dependament du cout par carte
             numeroDePari = controller.numeroDePari(); // Pari en jeu
 
+
             // Affectation et affichage des cartes
             mainDeCartes[0] = PaquetDeCartes.piger();
             mainDeCartes[1] = PaquetDeCartes.piger();
+            if ( test && compteurTest <nbTests ) {
+                mainDeCartes[0] = TESTS[compteurTest][0];
+                mainDeCartes[1] = TESTS[compteurTest][1];
+                if (nombreDeCartes < 3) {
+                    ++compteurTest;
+                }
+            }
             System.out.println (MessagesTp2.MESS_CARTE_PIGEES);
             controller.afficherCarte(mainDeCartes[0]);
             controller.afficherCarte(mainDeCartes[1]);
             if (nombreDeCartes == 3) {
                 mainDeCartes[2] = PaquetDeCartes.piger();
+                if ( test && compteurTest < nbTests ) {
+                    mainDeCartes[2] = TESTS[compteurTest][2];
+                     ++compteurTest;
+                }
                 controller.afficherCarte(mainDeCartes[2]);
             }
 
             // Affichage de la somme des cartes
             System.out.println(controller.sommeCartes(mainDeCartes, nombreDeCartes));
 
+            // AMELIORATION APPORTEE : Affichage complexe
             // Conversion des cartes en objet Carte pour l'affichage graphique
             Carte[] cartes = new Carte[3];
             cartes[0] = new Carte(mainDeCartes[0]);
             cartes[1] = new Carte(mainDeCartes[1]);
             cartes[2] = new Carte(mainDeCartes[2]);
-
 
             jPanelCarte.afficher(cartes, nombreDeCartes);
             frame.pack();
